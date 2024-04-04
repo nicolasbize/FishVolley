@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuo74sa0cceq8"]
+
+[ext_resource type="Texture2D" uid="uid://da0tipvmx8avi" path="res://scenes/ball/ball.png" id="1_8fq6m"]
+[ext_resource type="Script" path="res://scenes/ball/ball.gd" id="1_qmppl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_41b5i"]
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uds8q"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18fo5"]
+
+[node name="Ball" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 17
+physics_material_override = SubResource("PhysicsMaterial_41b5i")
+gravity_scale = 0.0
+script = ExtResource("1_qmppl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8fq6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uds8q")
+
+[node name="AirDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirDetector"]
+shape = SubResource("CircleShape2D_18fo5")

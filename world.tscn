@@ -1,0 +1,179 @@
+[gd_scene load_steps=15 format=3 uid="uid://cbtn20bbwv82e"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_0l1ft"]
+[ext_resource type="Texture2D" uid="uid://dxbt7ao3nrx11" path="res://sky.png" id="1_ld3lm"]
+[ext_resource type="PackedScene" uid="uid://wbitj51oxpcl" path="res://scenes/water/water.tscn" id="3_6yj2k"]
+[ext_resource type="PackedScene" uid="uid://cloceipxeh5hb" path="res://scenes/net/net.tscn" id="4_2jclf"]
+[ext_resource type="PackedScene" uid="uid://b05hk7y7g2dr2" path="res://scenes/fish/fish.tscn" id="4_ode32"]
+[ext_resource type="PackedScene" uid="uid://cuo74sa0cceq8" path="res://scenes/ball/ball.tscn" id="5_jqm4s"]
+[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="7_rmuu8"]
+[ext_resource type="PackedScene" uid="uid://x700fwofdsyk" path="res://scenes/ball/ball_shadow.tscn" id="7_wdq10"]
+[ext_resource type="PackedScene" uid="uid://h34sx160mibk" path="res://scenes/ball/ball_detector.tscn" id="9_qohmo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tcxu"]
+size = Vector2(152, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxtpa"]
+size = Vector2(312, 227)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrflj"]
+size = Vector2(20, 337.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0he6"]
+size = Vector2(354, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6wui"]
+size = Vector2(4, 194)
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("ball", "kickoff1", "kickoff2")]
+script = ExtResource("1_0l1ft")
+ball = NodePath("Ball")
+kickoff1 = NodePath("KickoffPositions/Node2D")
+kickoff2 = NodePath("KickoffPositions/Node2D2")
+
+[node name="SkySprite" type="Sprite2D" parent="."]
+position = Vector2(156, 128)
+texture = ExtResource("1_ld3lm")
+metadata/_edit_lock_ = true
+
+[node name="WaterLeft" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("3_6yj2k")]
+position = Vector2(75, 211)
+ball_detector = NodePath("../BallDetectorLeft")
+
+[node name="BallDetectorLeft" parent="." instance=ExtResource("9_qohmo")]
+position = Vector2(80, 120)
+
+[node name="CollisionShape2D" parent="BallDetectorLeft/Area2D" index="0"]
+position = Vector2(-4, -24)
+shape = SubResource("RectangleShape2D_7tcxu")
+
+[node name="WaterRight" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("3_6yj2k")]
+position = Vector2(237, 211)
+ball_detector = NodePath("../BallDetectorRight")
+
+[node name="BallDetectorRight" parent="." instance=ExtResource("9_qohmo")]
+position = Vector2(240, 120)
+
+[node name="CollisionShape2D" parent="BallDetectorRight/Area2D" index="0"]
+position = Vector2(-8, -24)
+shape = SubResource("RectangleShape2D_7tcxu")
+
+[node name="Fish" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_ode32")]
+position = Vector2(50, 227)
+ball = NodePath("../Ball")
+
+[node name="Fish2" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_ode32")]
+position = Vector2(241, 224)
+player = 2
+ball = NodePath("../Ball")
+
+[node name="AirArea" type="Area2D" parent="."]
+position = Vector2(156, 90)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirArea"]
+position = Vector2(0, -38.5)
+shape = SubResource("RectangleShape2D_kxtpa")
+
+[node name="Net" parent="." instance=ExtResource("4_2jclf")]
+position = Vector2(156, 196)
+
+[node name="Ball" parent="." instance=ExtResource("5_jqm4s")]
+position = Vector2(88, 141)
+
+[node name="BallShadow" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("7_wdq10")]
+position = Vector2(88, 167)
+ball = NodePath("../Ball")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreControl" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/ScoreControl"]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 47.0
+offset_right = 189.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.92549, 0.752941, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_rmuu8")
+theme_override_font_sizes/font_size = 20
+text = "score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/ScoreControl"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 75.0
+offset_right = 184.0
+offset_bottom = 109.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_rmuu8")
+theme_override_font_sizes/font_size = 20
+text = "0 - 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldLimits" type="Node2D" parent="."]
+
+[node name="WorldLimit" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(-11, 129)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/WorldLimit"]
+position = Vector2(0, -22.25)
+shape = SubResource("RectangleShape2D_lrflj")
+
+[node name="WorldLimit2" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(322, 128)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/WorldLimit2"]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_lrflj")
+
+[node name="WorldLimit3" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(156, -8)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/WorldLimit3"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_l0he6")
+
+[node name="WorldLimit4" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(156, 265)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/WorldLimit4"]
+shape = SubResource("RectangleShape2D_l0he6")
+
+[node name="WorldLimit5" type="StaticBody2D" parent="WorldLimits"]
+visible = false
+position = Vector2(157, 24)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/WorldLimit5"]
+position = Vector2(-1, 57)
+shape = SubResource("RectangleShape2D_c6wui")
+
+[node name="KickoffPositions" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="KickoffPositions"]
+position = Vector2(88, 141)
+
+[node name="Node2D2" type="Node2D" parent="KickoffPositions"]
+position = Vector2(219, 142)
+
+[editable path="BallDetectorLeft"]
+[editable path="BallDetectorRight"]

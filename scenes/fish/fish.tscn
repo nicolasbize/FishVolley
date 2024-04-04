@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b05hk7y7g2dr2"]
+
+[ext_resource type="Script" path="res://scenes/fish/fish.gd" id="1_dl5yj"]
+[ext_resource type="Texture2D" uid="uid://qc4sb8w2skse" path="res://scenes/fish/fish.png" id="1_uh1r3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjby8"]
+radius = 6.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jeo1"]
+radius = 5.09902
+
+[node name="Fish" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 97
+script = ExtResource("1_dl5yj")
+
+[node name="FishSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_uh1r3")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rjby8")
+
+[node name="AirDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirDetector"]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_6jeo1")
+
+[node name="WaterDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_6jeo1")

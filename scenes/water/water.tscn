@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://wbitj51oxpcl"]
+
+[ext_resource type="Script" path="res://scenes/water/water.gd" id="1_1uw1e"]
+[ext_resource type="Texture2D" uid="uid://uifv7pawggr0" path="res://scenes/water/water.png" id="2_xlj6g"]
+[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="3_p8i8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqb0r"]
+size = Vector2(155, 90)
+
+[node name="Water" type="Node2D"]
+script = ExtResource("1_1uw1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_xlj6g")
+
+[node name="BallDetectorArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallDetectorArea"]
+visible = false
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_dqb0r")
+
+[node name="CountdownLabel" type="Label" parent="."]
+offset_left = -78.0
+offset_top = -45.0
+offset_right = 78.0
+offset_bottom = 45.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p8i8p")
+theme_override_font_sizes/font_size = 32
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1

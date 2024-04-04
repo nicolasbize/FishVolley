@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://x700fwofdsyk"]
+
+[ext_resource type="Texture2D" uid="uid://dstm0ba37ntrh" path="res://scenes/ball/shadow.png" id="1_cc2tx"]
+[ext_resource type="Script" path="res://scenes/ball/ball_shadow.gd" id="2_riiwp"]
+
+[node name="BallShadow" type="Sprite2D"]
+texture = ExtResource("1_cc2tx")
+script = ExtResource("2_riiwp")
