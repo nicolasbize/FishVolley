@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhggy6to3ayxy"]
+
+[ext_resource type="PackedScene" uid="uid://cbrsuf17f6s5h" path="res://scenes/ui/logo_screen/logo_screen.tscn" id="1_3814q"]
+[ext_resource type="Texture2D" uid="uid://utsuqqnnqar0" path="res://scenes/ui/logo_screen/fishfest-logo.png" id="2_lbpc4"]
+
+[node name="LogoScreen" instance=ExtResource("1_3814q")]
+
+[node name="Logo" parent="CanvasLayer" index="0"]
+texture = ExtResource("2_lbpc4")

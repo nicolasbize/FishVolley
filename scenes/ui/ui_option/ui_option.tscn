@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://crmwas6n04fvi"]
+
+[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="1_wnquy"]
+[ext_resource type="Script" path="res://scenes/ui/ui_option/ui_option.gd" id="2_ldg06"]
+
+[node name="UIOption" type="Label"]
+offset_right = 91.0
+offset_bottom = 29.0
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.968627, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wnquy")
+theme_override_font_sizes/font_size = 16
+text = "Exhibition"
+script = ExtResource("2_ldg06")
+hover_color = Color(0.968627, 0.294118, 0, 1)
+click_color = Color(0.968627, 0.184314, 0, 1)
+normal_color = Color(0.968627, 1, 0, 1)

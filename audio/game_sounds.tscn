@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b668xqw87n4y8"]
+
+[ext_resource type="Script" path="res://audio/game_sounds.gd" id="1_2ij3w"]
+[ext_resource type="PackedScene" uid="uid://dsmce0h5or2e6" path="res://audio/sound_queue.tscn" id="3_s1m8x"]
+[ext_resource type="AudioStream" uid="uid://cag33o4k7dnra" path="res://assets/sfx/menu-nav.wav" id="37_6jkjd"]
+[ext_resource type="AudioStream" uid="uid://cwhext35nt413" path="res://assets/sfx/menu-select.wav" id="38_85mad"]
+
+[node name="GameSounds" type="Node"]
+script = ExtResource("1_2ij3w")
+
+[node name="MenuNav" parent="." instance=ExtResource("3_s1m8x")]
+nb_backup_duplicates = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MenuNav"]
+stream = ExtResource("37_6jkjd")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="MenuSelect" parent="." instance=ExtResource("3_s1m8x")]
+nb_backup_duplicates = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MenuSelect"]
+stream = ExtResource("38_85mad")
+volume_db = -10.0
+bus = &"SFX"

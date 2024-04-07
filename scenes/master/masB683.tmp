@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crf3yuw5d2jex"]
+
+[ext_resource type="Script" path="res://scenes/master/master_scene.gd" id="1_g4kai"]
+
+[node name="MasterScene" type="Node2D"]
+script = ExtResource("1_g4kai")

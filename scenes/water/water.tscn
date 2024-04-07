@@ -1,25 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://wbitj51oxpcl"]
+[gd_scene load_steps=8 format=3 uid="uid://wbitj51oxpcl"]
 
 [ext_resource type="Script" path="res://scenes/water/water.gd" id="1_1uw1e"]
-[ext_resource type="Texture2D" uid="uid://uifv7pawggr0" path="res://scenes/water/water.png" id="2_xlj6g"]
+[ext_resource type="Texture2D" uid="uid://cud6y064ioycf" path="res://scenes/water/good_water.png" id="2_talnl"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_txtcb"]
 [ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="3_p8i8p"]
+[ext_resource type="Texture2D" uid="uid://4jnu5fl2iwmn" path="res://scenes/water/forbidden_water.png" id="3_wu4lc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7um1"]
+shader = ExtResource("2_txtcb")
+shader_parameter/amplitude = 0.003
+shader_parameter/speed = 6.0
+shader_parameter/scaling = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqb0r"]
 size = Vector2(155, 90)
 
 [node name="Water" type="Node2D"]
 script = ExtResource("1_1uw1e")
+good_water = ExtResource("2_talnl")
+bad_water = ExtResource("3_wu4lc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_xlj6g")
+[node name="WaterSprite" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_i7um1")
+position = Vector2(0, -7.5)
+scale = Vector2(0.304688, 0.65625)
+texture = ExtResource("2_talnl")
 
 [node name="BallDetectorArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallDetectorArea"]
-visible = false
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_dqb0r")
 
@@ -34,3 +46,7 @@ theme_override_font_sizes/font_size = 32
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WaterDepoisonTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

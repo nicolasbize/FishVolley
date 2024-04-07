@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4i3kwtwwpw28"]
+
+[ext_resource type="Texture2D" uid="uid://e73baknwr7rb" path="res://scenes/ui/title_screen/title.png" id="1_g86c6"]
+[ext_resource type="Script" path="res://scenes/ui/title_screen/menu_screen.gd" id="1_hu4io"]
+[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="2_yamg7"]
+[ext_resource type="PackedScene" uid="uid://crmwas6n04fvi" path="res://scenes/ui/ui_option/ui_option.tscn" id="3_vvf64"]
+
+[node name="MenuScreen" type="Node2D"]
+script = ExtResource("1_hu4io")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_g86c6")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 214.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.968627, 0.792157, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_yamg7")
+theme_override_font_sizes/font_size = 36
+text = "Fish"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = 213.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0.968627, 0.792157, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_yamg7")
+theme_override_font_sizes/font_size = 32
+text = "Volley"
+
+[node name="ExhibitionButton" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 120.0
+offset_right = 107.0
+offset_bottom = 149.0
+
+[node name="TournamentButton" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 144.0
+offset_right = 107.0
+offset_bottom = 173.0
+text = "Tournament"
+
+[node name="Local1v1Button" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 168.0
+offset_right = 107.0
+offset_bottom = 197.0
+text = "Local 2P"
+
+[node name="SettingsButton" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 192.0
+offset_right = 107.0
+offset_bottom = 221.0
+text = "settings"

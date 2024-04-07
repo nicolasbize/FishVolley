@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgl2qec5vutjh"]
+
+[ext_resource type="Script" path="res://scenes/ui/player_select/player_select_screen.gd" id="1_7044p"]
+[ext_resource type="Texture2D" uid="uid://5sqaakik672c" path="res://scenes/ui/blue-gradient.png" id="1_pfkle"]
+[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="2_hevin"]
+[ext_resource type="Texture2D" uid="uid://b8hb52scqskd6" path="res://scenes/ui/player_select/keys-1.png" id="3_8kfhl"]
+[ext_resource type="Texture2D" uid="uid://ch2a2f8r84jmf" path="res://scenes/ui/player_select/keys-2.png" id="4_ek073"]
+[ext_resource type="PackedScene" uid="uid://by3hrvsumeagg" path="res://scenes/ui/player_select/character_select.tscn" id="6_vjypc"]
+[ext_resource type="PackedScene" uid="uid://crmwas6n04fvi" path="res://scenes/ui/ui_option/ui_option.tscn" id="7_drudi"]
+
+[node name="PlayerSelectScreen" type="Node2D"]
+script = ExtResource("1_7044p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pfkle")
+
+[node name="PlayerSelectLabel" type="Label" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 8.0
+offset_right = 110.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.87451, 0.945098, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hevin")
+theme_override_font_sizes/font_size = 28
+text = "Player select"
+vertical_alignment = 1
+
+[node name="PlayerOne" type="Label" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -141.5
+offset_top = 56.0
+offset_right = -16.5
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.87451, 0.945098, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hevin")
+theme_override_font_sizes/font_size = 20
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 101.0
+offset_right = 94.0
+offset_bottom = 141.0
+texture = ExtResource("3_8kfhl")
+
+[node name="PlayerTwoLabel" type="Label" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 11.5
+offset_top = 56.0
+offset_right = 136.5
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.87451, 0.945098, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hevin")
+theme_override_font_sizes/font_size = 20
+text = "Player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsPlayerTwoTexture" type="TextureRect" parent="CanvasLayer/TextureRect"]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 101.0
+offset_right = 246.0
+offset_bottom = 141.0
+texture = ExtResource("4_ek073")
+
+[node name="CharacterSelect" parent="CanvasLayer/TextureRect" instance=ExtResource("6_vjypc")]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 157.0
+offset_right = -178.0
+offset_bottom = -59.0
+
+[node name="CharacterSelect2" parent="CanvasLayer/TextureRect" instance=ExtResource("6_vjypc")]
+layout_mode = 1
+offset_left = 169.0
+offset_top = 157.0
+offset_right = -28.0
+offset_bottom = -59.0
+
+[node name="PlayButton" parent="CanvasLayer/TextureRect" instance=ExtResource("7_drudi")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -48.0
+offset_right = -39.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" parent="CanvasLayer/TextureRect" instance=ExtResource("7_drudi")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -44.0
+offset_right = 86.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "back"
+horizontal_alignment = 1
+vertical_alignment = 1

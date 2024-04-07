@@ -1,14 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbtn20bbwv82e"]
+[gd_scene load_steps=13 format=3 uid="uid://cbtn20bbwv82e"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_0l1ft"]
-[ext_resource type="Texture2D" uid="uid://dxbt7ao3nrx11" path="res://sky.png" id="1_ld3lm"]
-[ext_resource type="PackedScene" uid="uid://wbitj51oxpcl" path="res://scenes/water/water.tscn" id="3_6yj2k"]
-[ext_resource type="PackedScene" uid="uid://cloceipxeh5hb" path="res://scenes/net/net.tscn" id="4_2jclf"]
-[ext_resource type="PackedScene" uid="uid://b05hk7y7g2dr2" path="res://scenes/fish/fish.tscn" id="4_ode32"]
-[ext_resource type="PackedScene" uid="uid://cuo74sa0cceq8" path="res://scenes/ball/ball.tscn" id="5_jqm4s"]
-[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="7_rmuu8"]
-[ext_resource type="PackedScene" uid="uid://x700fwofdsyk" path="res://scenes/ball/ball_shadow.tscn" id="7_wdq10"]
-[ext_resource type="PackedScene" uid="uid://h34sx160mibk" path="res://scenes/ball/ball_detector.tscn" id="9_qohmo"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_ic2ac"]
+[ext_resource type="Texture2D" uid="uid://dxbt7ao3nrx11" path="res://sky.png" id="2_pgsaq"]
+[ext_resource type="PackedScene" uid="uid://wbitj51oxpcl" path="res://scenes/water/water.tscn" id="5_atp4k"]
+[ext_resource type="PackedScene" uid="uid://h34sx160mibk" path="res://scenes/ball/ball_detector.tscn" id="6_la3gu"]
+[ext_resource type="PackedScene" uid="uid://cloceipxeh5hb" path="res://scenes/net/net.tscn" id="7_dsowd"]
+[ext_resource type="PackedScene" uid="uid://x700fwofdsyk" path="res://scenes/ball/ball_shadow.tscn" id="8_5pich"]
+[ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="9_hp6g6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tcxu"]
 size = Vector2(152, 320)
@@ -25,49 +23,54 @@ size = Vector2(354, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6wui"]
 size = Vector2(4, 194)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("ball", "kickoff1", "kickoff2")]
-script = ExtResource("1_0l1ft")
-ball = NodePath("Ball")
+[node name="Game" type="Node2D" node_paths=PackedStringArray("kickoff1", "kickoff2", "water_left", "water_right")]
+script = ExtResource("1_ic2ac")
 kickoff1 = NodePath("KickoffPositions/Node2D")
 kickoff2 = NodePath("KickoffPositions/Node2D2")
+water_left = NodePath("WaterLeft")
+water_right = NodePath("WaterRight")
 
 [node name="SkySprite" type="Sprite2D" parent="."]
 position = Vector2(156, 128)
-texture = ExtResource("1_ld3lm")
+texture = ExtResource("2_pgsaq")
 metadata/_edit_lock_ = true
 
-[node name="WaterLeft" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("3_6yj2k")]
+[node name="Fishes" type="Node2D" parent="."]
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Spawns"]
+position = Vector2(48, 224)
+
+[node name="Node2D2" type="Node2D" parent="Spawns"]
+position = Vector2(240, 224)
+
+[node name="WaterLeft" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("5_atp4k")]
 position = Vector2(75, 211)
 ball_detector = NodePath("../BallDetectorLeft")
 
-[node name="BallDetectorLeft" parent="." instance=ExtResource("9_qohmo")]
+[node name="BallDetectorLeft" parent="." instance=ExtResource("6_la3gu")]
+visible = false
 position = Vector2(80, 120)
 
 [node name="CollisionShape2D" parent="BallDetectorLeft/Area2D" index="0"]
 position = Vector2(-4, -24)
 shape = SubResource("RectangleShape2D_7tcxu")
 
-[node name="WaterRight" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("3_6yj2k")]
+[node name="WaterRight" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("5_atp4k")]
 position = Vector2(237, 211)
 ball_detector = NodePath("../BallDetectorRight")
 
-[node name="BallDetectorRight" parent="." instance=ExtResource("9_qohmo")]
+[node name="BallDetectorRight" parent="." instance=ExtResource("6_la3gu")]
+visible = false
 position = Vector2(240, 120)
 
 [node name="CollisionShape2D" parent="BallDetectorRight/Area2D" index="0"]
 position = Vector2(-8, -24)
 shape = SubResource("RectangleShape2D_7tcxu")
 
-[node name="Fish" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_ode32")]
-position = Vector2(50, 227)
-ball = NodePath("../Ball")
-
-[node name="Fish2" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_ode32")]
-position = Vector2(241, 224)
-player = 2
-ball = NodePath("../Ball")
-
 [node name="AirArea" type="Area2D" parent="."]
+visible = false
 position = Vector2(156, 90)
 collision_layer = 4
 collision_mask = 0
@@ -76,15 +79,11 @@ collision_mask = 0
 position = Vector2(0, -38.5)
 shape = SubResource("RectangleShape2D_kxtpa")
 
-[node name="Net" parent="." instance=ExtResource("4_2jclf")]
+[node name="Net" parent="." instance=ExtResource("7_dsowd")]
 position = Vector2(156, 196)
 
-[node name="Ball" parent="." instance=ExtResource("5_jqm4s")]
-position = Vector2(88, 141)
-
-[node name="BallShadow" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("7_wdq10")]
+[node name="BallShadow" parent="." instance=ExtResource("8_5pich")]
 position = Vector2(88, 167)
-ball = NodePath("../Ball")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -104,7 +103,7 @@ offset_right = 189.0
 offset_bottom = 81.0
 theme_override_colors/font_color = Color(0.92549, 0.752941, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_rmuu8")
+theme_override_fonts/font = ExtResource("9_hp6g6")
 theme_override_font_sizes/font_size = 20
 text = "score"
 horizontal_alignment = 1
@@ -118,13 +117,32 @@ offset_right = 184.0
 offset_bottom = 109.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_rmuu8")
+theme_override_fonts/font = ExtResource("9_hp6g6")
 theme_override_font_sizes/font_size = 20
 text = "0 - 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="WinLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -23.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92549, 0.321569, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hp6g6")
+theme_override_font_sizes/font_size = 20
+text = "PLAYER 1 Won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WorldLimits" type="Node2D" parent="."]
+visible = false
 
 [node name="WorldLimit" type="StaticBody2D" parent="WorldLimits"]
 position = Vector2(-11, 129)
@@ -170,10 +188,17 @@ shape = SubResource("RectangleShape2D_c6wui")
 [node name="KickoffPositions" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="KickoffPositions"]
-position = Vector2(88, 141)
+position = Vector2(88, 154)
 
 [node name="Node2D2" type="Node2D" parent="KickoffPositions"]
-position = Vector2(219, 142)
+position = Vector2(219, 155)
+
+[node name="GameTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CompleteMatchTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [editable path="BallDetectorLeft"]
 [editable path="BallDetectorRight"]
