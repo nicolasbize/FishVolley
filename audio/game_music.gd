@@ -4,7 +4,7 @@ extends Node
 
 @onready var active_music := $ActiveMusic
 
-const trackMainMenu = preload("res://Assets/Music/main-menu.mp3")
+const trackMainMenu = preload("res://assets/music/main-menu.mp3")
 const trackGameplay = preload("res://assets/music/game.mp3")
 
 enum Track {None, MainMenu, Gameplay}

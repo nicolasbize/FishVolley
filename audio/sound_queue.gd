@@ -1,3 +1,4 @@
+class_name SoundQueue
 extends Node
 
 var audio_stream_players : Array[AudioStreamPlayer] = []

@@ -39,7 +39,7 @@ stream = ExtResource("5_lej72")
 bus = &"SFX"
 
 [node name="Hit" parent="." instance=ExtResource("3_s1m8x")]
-nb_backup_duplicates = 3
+nb_backup_duplicates = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Hit"]
 stream = ExtResource("6_yaspd")

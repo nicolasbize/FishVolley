@@ -3,36 +3,6 @@
 [ext_resource type="Script" path="res://scenes/ui/transition/transition.gd" id="1_qxjv4"]
 [ext_resource type="Texture2D" uid="uid://b555pnxu5w3y5" path="res://scenes/ui/transition/transition.png" id="2_rmklm"]
 
-[sub_resource type="Animation" id="Animation_s2b7s"]
-resource_name = "start"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-624, 0), Vector2(-160, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"on_ready_for_content"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_yooig"]
 length = 0.001
 tracks/0/type = "value"
@@ -75,6 +45,36 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"on_finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s2b7s"]
+resource_name = "start"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-624, 0), Vector2(-160, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_ready_for_content"
 }]
 }
 

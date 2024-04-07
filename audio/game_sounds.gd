@@ -1,6 +1,6 @@
 extends Node
 
-enum Sound {MenuNav, MenuSelect}
+enum Sound {MenuNav, MenuSelect, Splash, Poof, Hit, Whistle}
 
 var sound_map = {}
 
@@ -8,6 +8,10 @@ func _ready():
 	sound_map = {
 		Sound.MenuNav: $MenuNav,
 		Sound.MenuSelect: $MenuSelect,
+		Sound.Splash: $Splash,
+		Sound.Poof: $Poof,
+		Sound.Hit: $Hit,
+		Sound.Whistle: $Whistle,
 	}
 
 func play(sound: Sound, alter_pitch: bool = false) -> void:

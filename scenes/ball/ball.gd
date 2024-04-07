@@ -2,7 +2,6 @@ class_name Ball
 extends RigidBody2D
 
 signal motion_started
-signal exploded
 
 @onready var air_detector := $AirDetector
 
@@ -29,5 +28,4 @@ func destroy_in_place() -> void:
 	var explosion = Explosion.instantiate()
 	get_parent().add_child(explosion)
 	explosion.global_position = global_position
-	emit_signal("exploded")
 	queue_free()

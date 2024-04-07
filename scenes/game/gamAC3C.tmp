@@ -46,10 +46,6 @@ position = Vector2(48, 224)
 [node name="Node2D2" type="Node2D" parent="Spawns"]
 position = Vector2(240, 224)
 
-[node name="BallShadow" parent="." instance=ExtResource("8_5pich")]
-z_index = 10
-position = Vector2(88, 168)
-
 [node name="WaterLeft" parent="." node_paths=PackedStringArray("ball_detector") instance=ExtResource("5_atp4k")]
 position = Vector2(75, 211)
 ball_detector = NodePath("../BallDetectorLeft")
@@ -86,6 +82,9 @@ shape = SubResource("RectangleShape2D_kxtpa")
 
 [node name="Net" parent="." instance=ExtResource("7_dsowd")]
 position = Vector2(156, 196)
+
+[node name="BallShadow" parent="." instance=ExtResource("8_5pich")]
+position = Vector2(88, 167)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

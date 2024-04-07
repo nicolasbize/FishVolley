@@ -1,3 +1,4 @@
+class_name SoundPool
 extends Node
 
 @export var max_ticks_frequency := -1

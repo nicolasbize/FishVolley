@@ -1,16 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://wbitj51oxpcl"]
+[gd_scene load_steps=9 format=3 uid="uid://wbitj51oxpcl"]
 
 [ext_resource type="Script" path="res://scenes/water/water.gd" id="1_1uw1e"]
 [ext_resource type="Texture2D" uid="uid://cud6y064ioycf" path="res://scenes/water/good_water.png" id="2_talnl"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_txtcb"]
 [ext_resource type="FontFile" uid="uid://bgw0utnyv6d12" path="res://fonts/KOMIKAX_.ttf" id="3_p8i8p"]
 [ext_resource type="Texture2D" uid="uid://4jnu5fl2iwmn" path="res://scenes/water/forbidden_water.png" id="3_wu4lc"]
+[ext_resource type="Texture2D" uid="uid://bxddh1jtsmnxf" path="res://scenes/water/waterdisplacement.png" id="5_rxaul"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7um1"]
 shader = ExtResource("2_txtcb")
 shader_parameter/amplitude = 0.003
 shader_parameter/speed = 6.0
-shader_parameter/scaling = Vector2(1, 1)
+shader_parameter/scaling = Vector2(1, 1.1)
+shader_parameter/displacement_map = ExtResource("5_rxaul")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqb0r"]
 size = Vector2(155, 90)

@@ -8,7 +8,7 @@ var score := Vector2(0, 0)
 @export var kickoff2 : Node2D
 @export var water_left : Water
 @export var water_right : Water
-@export var limit_score := 1
+@export var limit_score := 7
 
 @onready var score_control := $UI/ScoreControl
 @onready var score_label := $UI/ScoreControl/ScoreLabel
@@ -82,6 +82,7 @@ func start_round():
 	ball.position = next_kickoff_position
 	update_score()
 	score_control.visible = true
+	GameSounds.play(GameSounds.Sound.Whistle)
 	GameState.start_point(ball)
 
 func finish_match():

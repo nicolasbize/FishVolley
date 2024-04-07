@@ -65,6 +65,7 @@ func destroy_ball():
 		ball.destroy_in_place()
 		ball = null
 		water_depoison_timer.start()
+		GameSounds.play(GameSounds.Sound.Poof)
 		emit_signal("lost_point")
 	else:
 		print("tried to destroy ball")
