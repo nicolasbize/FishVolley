@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://s6d5poa2wfwi"]
+
+[ext_resource type="Script" path="res://scenes/ui/player_select/difficulty_level.gd" id="1_pujdy"]
+[ext_resource type="StyleBox" uid="uid://c1ixi1cj01pkn" path="res://scenes/ui/player_select/focus_flat.tres" id="2_gquj7"]
+[ext_resource type="Texture2D" uid="uid://ctomrrgdd0vlc" path="res://scenes/ui/player_select/arrow-right.png" id="3_uo6b7"]
+[ext_resource type="Texture2D" uid="uid://g7w2hb3nda5k" path="res://scenes/ui/player_select/arrow-left.png" id="4_aajrr"]
+[ext_resource type="Texture2D" uid="uid://du2ebb58sbpah" path="res://scenes/ui/player_select/difficulty-label.png" id="5_7giv7"]
+[ext_resource type="Texture2D" uid="uid://75veeuxpv1v7" path="res://scenes/ui/player_select/rate-5.png" id="6_df878"]
+
+[node name="DifficultyLevel" type="Control"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 104.0
+offset_bottom = 16.0
+script = ExtResource("1_pujdy")
+
+[node name="ButtonNext" type="Button" parent="."]
+offset_left = 87.0
+offset_right = 99.0
+offset_bottom = 15.0
+theme_override_colors/icon_hover_color = Color(1, 1, 0, 1)
+theme_override_styles/focus = ExtResource("2_gquj7")
+icon = ExtResource("3_uo6b7")
+flat = true
+
+[node name="ButtonPrev" type="Button" parent="."]
+offset_left = 56.0
+offset_right = 68.0
+offset_bottom = 15.0
+theme_override_colors/icon_hover_color = Color(1, 1, 0, 1)
+theme_override_styles/focus = ExtResource("2_gquj7")
+icon = ExtResource("4_aajrr")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 40.0
+offset_bottom = 13.0
+texture = ExtResource("5_7giv7")
+stretch_mode = 2
+
+[node name="DifficultyLevel" type="TextureRect" parent="."]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 68.0
+offset_top = 5.0
+offset_right = 88.0
+offset_bottom = 10.0
+texture = ExtResource("6_df878")
+stretch_mode = 2

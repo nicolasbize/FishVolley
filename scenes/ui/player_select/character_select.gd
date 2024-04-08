@@ -8,19 +8,22 @@ extends Control
 @onready var button_prev := $ButtonPrev
 
 const char_textures := [
-	preload("res://scenes/fish/fish.png"),
-	preload("res://scenes/fish/carp.png"),
+	preload("res://scenes/ui/player_select/select-fish-1.png"),
+	preload("res://scenes/ui/player_select/select-fish-2.png"),
+	preload("res://scenes/ui/player_select/select-fish-3.png"),
+	preload("res://scenes/ui/player_select/select-fish-4.png"),
 ]
 
 const stat_textures = [
 	preload("res://scenes/ui/player_select/rate-1.png"),
 	preload("res://scenes/ui/player_select/rate-2.png"),
 	preload("res://scenes/ui/player_select/rate-3.png"),
+	preload("res://scenes/ui/player_select/rate-4.png"),
 ]
 
-const char_accels = [1, 0]
-const char_speeds = [0, 1]
-const char_strenghts = [1, 1]
+const char_accels = [1, 0, 2, 1]
+const char_speeds = [0, 1, 2, 1]
+const char_strengths = [1, 1, 0, 3]
 
 var current_index = 0
 
@@ -45,6 +48,6 @@ func refresh_ui():
 	fish_texture.texture = char_textures[current_index]
 	stat_accel.texture = stat_textures[char_accels[current_index]]
 	stat_speed.texture = stat_textures[char_speeds[current_index]]
-	stat_strength.texture = stat_textures[char_strenghts[current_index]]
+	stat_strength.texture = stat_textures[char_strengths[current_index]]
 	button_prev.visible = current_index > 0
 	button_next.visible = current_index < char_textures.size() - 1

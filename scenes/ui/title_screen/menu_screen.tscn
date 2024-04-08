@@ -49,6 +49,19 @@ theme_override_fonts/font = ExtResource("2_yamg7")
 theme_override_font_sizes/font_size = 32
 text = "Volley"
 
+[node name="Label3" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 225.0
+offset_right = 310.0
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(0.968627, 0.792157, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_yamg7")
+theme_override_font_sizes/font_size = 16
+text = "By Gad"
+
 [node name="ExhibitionButton" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
 layout_mode = 0
 offset_left = 16.0
@@ -56,26 +69,18 @@ offset_top = 120.0
 offset_right = 107.0
 offset_bottom = 149.0
 
-[node name="TournamentButton" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
+[node name="Local1v1Button" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 144.0
 offset_right = 107.0
 offset_bottom = 173.0
-text = "Tournament"
-
-[node name="Local1v1Button" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 168.0
-offset_right = 107.0
-offset_bottom = 197.0
 text = "Local 2P"
 
 [node name="SettingsButton" parent="CanvasLayer/Control" instance=ExtResource("3_vvf64")]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 192.0
+offset_top = 168.0
 offset_right = 107.0
-offset_bottom = 221.0
+offset_bottom = 197.0
 text = "settings"

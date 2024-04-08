@@ -1,7 +1,7 @@
 extends Node2D
 
 signal back
-signal start_game(setup, fish1, fish2)
+signal start_game(setup, fish1, fish2, difficulty)
 
 @onready var play_button := $CanvasLayer/TextureRect/PlayButton
 @onready var back_button := $CanvasLayer/TextureRect/BackButton
@@ -9,6 +9,7 @@ signal start_game(setup, fish1, fish2)
 @onready var char2_select := $CanvasLayer/TextureRect/CharacterSelect2
 @onready var player_two_label := $CanvasLayer/TextureRect/PlayerTwoLabel
 @onready var controls_2_texture := $CanvasLayer/TextureRect/ControlsPlayerTwoTexture
+@onready var difficulty_picker := $CanvasLayer/TextureRect/DifficultyLevel
 
 var current_setup := MenuScreen.MenuOption.Exhibition
 
@@ -21,10 +22,11 @@ func _ready():
 	if current_setup == MenuScreen.MenuOption.Exhibition:
 		player_two_label.text = "CPU"
 		controls_2_texture.visible = false
+		difficulty_picker.visible = true
 	
 
 func on_play_pressed():
-	emit_signal("start_game", current_setup, char1_select.current_index, char2_select.current_index)
+	emit_signal("start_game", current_setup, char1_select.current_index, char2_select.current_index, difficulty_picker.current_index)
 
 func on_back_pressed():
 	emit_signal("back")

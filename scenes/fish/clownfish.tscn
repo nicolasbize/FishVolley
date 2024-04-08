@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bea76opfcrf1r"]
+
+[ext_resource type="PackedScene" uid="uid://b05hk7y7g2dr2" path="res://scenes/fish/fish.tscn" id="1_khtdj"]
+[ext_resource type="Texture2D" uid="uid://dc60k4ebu0isv" path="res://scenes/fish/clownfish.png" id="2_32p3r"]
+
+[node name="Clownfish" instance=ExtResource("1_khtdj")]
+rotation_speed = 20.0
+air_rotation_speed = 10.0
+max_speed = 400.0
+acceleration = 450.0
+friction = 150.0
+gravity = Vector2(0, 180)
+
+[node name="FishSprite" parent="." index="1"]
+texture = ExtResource("2_32p3r")

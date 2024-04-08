@@ -26,8 +26,6 @@ func play_sound(alter_pitch: bool):
 		if not audio_stream_players[current_index_playing].playing:
 			check_alter_pitch(audio_stream_players[current_index_playing], alter_pitch)
 			audio_stream_players[current_index_playing].play()
-		else:
-			print("ran out of duplicate streams to play for " + name)
 
 func stop():
 	audio_stream_players[current_index_playing].stop()

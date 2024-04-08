@@ -19,23 +19,29 @@ var score := Vector2(0, 0)
 @onready var win_label := $UI/WinLabel
 
 const Ball = preload("res://scenes/ball/ball.tscn")
+const Trail = preload("res://scenes/trail/trail.tscn")
 
 const Fishes = [
 	preload("res://scenes/fish/fish.tscn"),
 	preload("res://scenes/fish/carp.tscn"),
+	preload("res://scenes/fish/butterfly.tscn"),
+	preload("res://scenes/fish/clownfish.tscn"),
 ]
 
 var next_kickoff_position := Vector2.ZERO
 var ball : Ball
+var trail : Trail
 
 var control_option := MenuScreen.MenuOption.Exhibition
 var fish_p1_index := 0
 var fish_p2_index := 0
+var cpu_difficulty := 3
 
-func setup(option: MenuScreen.MenuOption, char1: int, char2: int):
+func setup(option: MenuScreen.MenuOption, char1: int, char2: int, difficulty:int):
 	control_option = option
 	fish_p1_index = char1
 	fish_p2_index = char2
+	cpu_difficulty = difficulty
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +51,8 @@ func _ready():
 	complete_match_timer.connect("timeout", on_complete_match_timer.bind())
 	var kickoff_positions = [kickoff1, kickoff2]
 	kickoff_positions.shuffle()
-	next_kickoff_position = kickoff_positions[0].position
+	#next_kickoff_position = kickoff_positions[0].position
+	next_kickoff_position = kickoff2.position
 	var fish : Fish = Fishes[fish_p1_index].instantiate()
 	fish_parent.add_child(fish)
 	fish.global_position = spawns.get_child(0).global_position
@@ -54,6 +61,7 @@ func _ready():
 	fish.global_position = spawns.get_child(1).global_position
 	if control_option == MenuScreen.MenuOption.Exhibition:
 		fish.control = Fish.ControlScheme.CPU
+		fish.cpu_difficulty = cpu_difficulty
 	else:
 		fish.control = Fish.ControlScheme.PlayerTwo
 	GameMusic.play_track(GameMusic.Track.Gameplay)
@@ -61,14 +69,18 @@ func _ready():
 
 func on_water_left_lost_point():
 	score.y += 1
-	GameState.stop_point()
-	next_kickoff_position = kickoff1.position
-	game_timer.start()
+	wait_and_restart_at(kickoff1.position)
 
 func on_water_right_lost_point():
 	score.x += 1
+	wait_and_restart_at(kickoff2.position)
+
+func wait_and_restart_at(kickoff_position: Vector2):
+	next_kickoff_position = kickoff_position
+	if trail != null:
+		trail.queue_free()
+		trail = null
 	GameState.stop_point()
-	next_kickoff_position = kickoff2.position
 	game_timer.start()
 
 func on_game_timer_timeout():
@@ -103,6 +115,9 @@ func create_ball():
 	ball.connect("motion_started", on_ball_motion_started.bind())
 	add_child(ball)
 	ball.reset()
+	trail = Trail.instantiate()
+	trail.set_target(ball)
+	add_child(trail)
 
 func on_ball_motion_started():
 	score_control.visible = false

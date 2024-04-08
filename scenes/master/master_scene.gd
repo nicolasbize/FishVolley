@@ -61,14 +61,14 @@ func transition_to_main_menu(prev_scene):
 	transition.connect("ready_for_content", show_main_menu.bind(prev_scene))
 	add_child(transition)
 	
-func transition_to_game(setup, char1, char2, prev_scene):
+func transition_to_game(setup, char1, char2, difficulty_index, prev_scene):
 	var transition = Transition.instantiate()
-	transition.connect("ready_for_content", start_game.bind(setup, char1, char2, prev_scene))
+	transition.connect("ready_for_content", start_game.bind(setup, char1, char2, difficulty_index, prev_scene))
 	add_child(transition)
 
-func start_game(setup, char1, char2, prev_scene):
+func start_game(setup, char1, char2, difficulty, prev_scene):
 	var scene = GameScene.instantiate()
-	scene.setup(setup, char1, char2)
+	scene.setup(setup, char1, char2, difficulty)
 	scene.connect("complete", transition_to_main_menu.bind(scene))
 	add_child(scene)
 	prev_scene.queue_free()
